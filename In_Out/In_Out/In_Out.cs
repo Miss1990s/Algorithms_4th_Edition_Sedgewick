@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace In_Out
+namespace BaseDS
 {
-    class Program
+    class In_Out
     {
         static void Main(string[] args)
         {
             string fileName = args[0];
             string str;
-            while((str = Console.ReadLine())!=null){
+            while ((str = Console.ReadLine()) != null)
+            {
                 Out.Write<string>(new string[] { str }, fileName);
             }
         }
     }
     class In
     {
-        public static int[] ReadInts(string name){
+        public static int[] ReadInts(string name)
+        {
             List<Int32> nums = new List<int>();
-            ParseFile(name, nums,x=>Int32.Parse(x));
+            ParseFile(name, nums, x => Int32.Parse(x));
             return nums.ToArray();
         }
         public static Double[] ReadDoubles(string name)
@@ -38,7 +36,7 @@ namespace In_Out
             return nums.ToArray();
         }
 
-        private static void ParseFile<T>(string name, List<T> list, Func<string,T> ParseFunc)
+        private static void ParseFile<T>(string name, List<T> list, Func<string, T> ParseFunc)
         {
             using (StreamReader sr = new StreamReader(name))
             {
@@ -58,10 +56,11 @@ namespace In_Out
     {
         public static void Write<T>(T[] array, string name)
         {
-            using (StreamWriter fs = new StreamWriter(name,true))
+            using (StreamWriter fs = new StreamWriter(name, true))
             {
                 Array.ForEach<T>(array, x => fs.WriteLine(x));
             }
         }
     }
 }
+
